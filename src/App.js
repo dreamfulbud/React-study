@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
+import Form from "./components/Form";
 import List from "./components/List";
 import TextCounter from "./components/TextCounter";
 import Timer from "./components/Timer";
@@ -24,11 +25,6 @@ export default function App() {
 		},
 	]);
 	const [value, setValue] = useState("");
-
-	const handleChange = (e) => {
-		setValue(e.target.value);
-	};
-
 	// 할 일 입력
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -41,7 +37,6 @@ export default function App() {
 		setTodoData((prev) => [...prev, newTodo]);
 		setValue("");
 	};
-
 	return (
 		<>
 			<Timer />
@@ -51,14 +46,8 @@ export default function App() {
 				<div className="todoBlock">
 					<h1>할 일 목록</h1>
 
-					<ul>
-						<List todoData={todoData} setTodoData={setTodoData} />
-					</ul>
-
-					<form style={{ display: "flex" }} onSubmit={handleSubmit}>
-						<input type="text" name="value" placeholder="해야할 일을 입력하세요." value={value} onChange={handleChange} style={{ flex: "10", padding: "5px" }} />
-						<input type="submit" value="입력" className="btn" style={{ flex: "1" }} />
-					</form>
+					<List todoData={todoData} setTodoData={setTodoData} />
+					<Form handleSubmit={handleSubmit} value={value} setValue={setValue} />
 				</div>
 			</div>
 		</>
