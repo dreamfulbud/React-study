@@ -1,6 +1,6 @@
-import React, { useRef } from "react";
+import React from "react";
 
-export default function List({ id, title, completed, todoData, setTodoData, provided, snapshot }) {
+const List = React.memo(({ id, title, completed, todoData, setTodoData, provided, snapshot }) => {
 	// 삭제
 	const handleClick = (id) => {
 		let newTodoData = todoData.filter((data) => data.id !== id);
@@ -26,4 +26,6 @@ export default function List({ id, title, completed, todoData, setTodoData, prov
 			</button>
 		</li>
 	);
-}
+});
+
+export default List;
