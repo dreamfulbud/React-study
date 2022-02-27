@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import Form from "./components/Form";
-import List from "./components/List";
+import Lists from "./components/Lists";
 import TextCounter from "./components/TextCounter";
 import Timer from "./components/Timer";
 import Unit from "./components/Unit";
@@ -46,7 +46,7 @@ export default function App() {
 				<div className="todoBlock">
 					<h1>할 일 목록</h1>
 
-					<List todoData={todoData} setTodoData={setTodoData} />
+					<Lists todoData={todoData} setTodoData={setTodoData} />
 					<Form handleSubmit={handleSubmit} value={value} setValue={setValue} />
 				</div>
 			</div>
