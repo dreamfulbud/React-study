@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 const List = React.memo(({ id, title, completed, todoData, setTodoData, provided, snapshot }) => {
 	// 삭제
-	const handleClick = (id) => {
-		let newTodoData = todoData.filter((data) => data.id !== id);
-		setTodoData(newTodoData);
-	};
+	const handleClick = useCallback(
+		(id) => {
+			let newTodoData = todoData.filter((data) => data.id !== id);
+			setTodoData(newTodoData);
+		},
+		[todoData]
+	);
 	// 완료여부 false/true
 	const handleCompleChange = (id) => {
 		let newTodoData = todoData.map((data) => {
