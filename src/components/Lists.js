@@ -5,11 +5,8 @@ import "./lists.scss";
 
 const Lists = React.memo(({ todoData, setTodoData }) => {
 	const handleEnd = (result) => {
-		// console.log(result);
-
 		//목적지가 없으면 이벤트 취소, 함수 종료
 		if (!result.destination) return;
-
 		// 리액트 불변성을 지켜주기 위해 새로운 todoData 생성
 		const newTodoData = todoData;
 
@@ -18,6 +15,7 @@ const Lists = React.memo(({ todoData, setTodoData }) => {
 		newTodoData.splice(result.destination.index, 0, reorderedItem);
 
 		setTodoData(newTodoData);
+		localStorage.setItem("todoData", JSON.stringify(todoData));
 	};
 
 	return (
@@ -26,7 +24,7 @@ const Lists = React.memo(({ todoData, setTodoData }) => {
 				{(provided) => (
 					<ul {...provided.droppableProps} ref={provided.innerRef}>
 						{todoData.map((data, index) => (
-							<Draggable key={data.id} draggableId={data.id.toString()} index={index}>
+							<Draggable key={data.id} draggableId={String(data.id)} index={index}>
 								{(provided, snapshot) => (
 									<List key={data.id} id={data.id} title={data.title} completed={data.completed} todoData={todoData} setTodoData={setTodoData} provided={provided} snapshot={snapshot} />
 								)}
